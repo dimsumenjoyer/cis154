@@ -8,25 +8,27 @@ C - Professor Penta
 
 #include <stdio.h>
 
-int indexOfMaxInRange(int array[], int LengthOfArray);
-void swapElement(int array[], int LengthOfArray, int i1, int i2);
+int indexOfMaxInRange(int array[], int Start, int End);
+void swapElement(int array[], int i1, int i2);
 void sortArray(int array[], int LengthOfArray);
 
 int main(void)
 {
     int a1[5] = {0, 3, 6, 2, 7};
     int a2[5] = {51, 47, 85, 22, 19};
-    //int x = indexOfMaxInRange(a1, 5);
-    //printf("The index of the maximum number in this array is %d.\n", x);
-    //sortArray(a1, 5);
     sortArray(a2, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        int x = a2[i];
+        printf("%d\n", x);
+    }
     return 0;
 }
 
-int indexOfMaxInRange(int array[], int LengthOfArray)
+int indexOfMaxInRange(int array[], int Start, int End)
 {
     int MaxIndex = 0;
-    for (int i = 0; i < LengthOfArray; i++)
+    for (int i = Start; i <= End; i++)
     {
         if (array[i] > array[MaxIndex])
         {
@@ -36,7 +38,7 @@ int indexOfMaxInRange(int array[], int LengthOfArray)
     return MaxIndex;
 }
 
-void swapElement(int array[], int LengthOfArray, int i1, int i2)
+void swapElement(int array[], int i1, int i2)
 {
     int Test = array[i1];
     array[i1] = array[i2];
@@ -45,19 +47,13 @@ void swapElement(int array[], int LengthOfArray, int i1, int i2)
 
 void sortArray(int array[], int LengthOfArray)
 {
-    for (int i = 0; i < LengthOfArray; i++)
+    int IndexWithMaximumValue = 0;
+    for (int i1 = 0; i1 < LengthOfArray; i1++)
     {
-        for (int i2 = 0; i2 < LengthOfArray; i2++)
+        IndexWithMaximumValue = indexOfMaxInRange(array, i1, LengthOfArray - 1);
+        if (array[i1] > array[IndexWithMaximumValue])
         {
-            int MaxIndexOfArray = indexOfMaxInRange(array, (LengthOfArray - 1) - i2);
-            if (array[MaxIndexOfArray] > array[MaxIndexOfArray - 1])
-            {
-                swapElement(array, LengthOfArray, MaxIndexOfArray, MaxIndexOfArray - i2);
-                printf("%d\n", array[i2]);
-            }
+            swapElement(array, i1, IndexWithMaximumValue);
         }
-        /*int MaxIndexOfArray = indexOfMaxInRange(array, (LengthOfArray - 1) - i);
-        swapElement(array, LengthOfArray, MaxIndexOfArray, MaxIndexOfArray - i);
-        printf("%d\n", array[i]);*/
     }
-}
+} 

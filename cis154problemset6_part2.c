@@ -9,10 +9,11 @@ C - Professor Penta
 #include <stdio.h>
 
 double power(double x, int n);
+double powerRecursive(double x, int n);
 
 int main(void)
 {
-    double result = power(2, 1);
+    double result = powerRecursive(2, 3);
     printf("%lf\n", result);
 }
 
@@ -30,5 +31,22 @@ double power(double x, int n)
             n--;
         }
     return x;
+    }
+}
+
+double powerRecursive(double x, int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else if (n > 1)
+    {
+        x *= x;
+        return powerRecursive(x, n - 1);
+    }
+    else
+    {
+        return x;
     }
 }

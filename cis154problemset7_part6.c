@@ -1,21 +1,14 @@
-/*
-Victor Van
-00319912
-Problem Set 7.6
-C - Professor Penta
-3/5/2024, Due: 3/27/2024
-*/
-
 #include <stdio.h>
 
 int indexOfMaxInRange(int array[], int Start, int End);
 void swapElement(int array[], int i1, int i2);
 void sortArray(int array[], int LengthOfArray);
+//int sortArrayRecursive(int array[], int LengthOfArray, int i);
 
 int main(void)
 {
     int a1[5] = {0, 3, 6, 2, 7};
-    int a2[5] = {51, 47, 85, 22, 19};
+    int a2[5] = {51, 47, 85, 19, 23};
     sortArray(a2, 5);
     for (int i = 0; i < 5; i++)
     {
@@ -27,11 +20,13 @@ int main(void)
 
 int indexOfMaxInRange(int array[], int Start, int End)
 {
+    int Max = array[0];
     int MaxIndex = 0;
     for (int i = Start; i <= End; i++)
     {
         if (array[i] > array[MaxIndex])
         {
+            Max = array[i];
             MaxIndex = i;
         }
     }
@@ -47,13 +42,25 @@ void swapElement(int array[], int i1, int i2)
 
 void sortArray(int array[], int LengthOfArray)
 {
-    int IndexWithMaximumValue = 0;
-    for (int i1 = 0; i1 < LengthOfArray; i1++)
+    int indexOfMaxValue = 0;
+    for (int i = 0; i < LengthOfArray - 1; i++)
     {
-        IndexWithMaximumValue = indexOfMaxInRange(array, i1, LengthOfArray - 1);
-        if (array[i1] > array[IndexWithMaximumValue])
+        indexOfMaxValue = indexOfMaxInRange(array, array[i], array[i + 1]);
+        if (array[i] > array[indexOfMaxValue])
         {
-            swapElement(array, i1, IndexWithMaximumValue);
+            swapElement(array, i, indexOfMaxValue);
         }
     }
-} 
+}
+/*
+int sortArrayRecursive(int array[], int LengthOfArray, int i)
+{
+    int MaxValue = array[indexOfMaxInRange(array[LengthOfArray], i, LengthOfArray - 1)];
+    //int IndexWithMaximumValue = indexOfMaxInRange(array, i, LengthOfArray - 1);
+    if ((array[i] > array[MaxValue]) && i < LengthOfArray - 1)
+    {
+        swapElement(array, i, MaxValue);
+        sortArrayRecursive(array, LengthOfArray, i + 1);
+    }
+}
+*/

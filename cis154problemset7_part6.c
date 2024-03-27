@@ -52,6 +52,7 @@ void sortArray(int array[], int LengthOfArray)
         }
     }
 }
+
 /*
 int sortArrayRecursive(int array[], int LengthOfArray, int i)
 {

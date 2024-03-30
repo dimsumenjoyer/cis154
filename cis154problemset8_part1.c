@@ -1,3 +1,11 @@
+/*
+Victor Van
+00319912
+Problem Set 8.1
+C - Professor Penta
+3/30/2024, Due: 4/6/2024
+*/
+
 #include <stdio.h>
 
 int isAbecedarian(char word[], int wordMagnitude);

@@ -9,6 +9,7 @@ C - Professor Penta
 #include <stdio.h>
 
 int sevenPointFour(int size_of_array, int array[], int target);
+int randomName(int size_of_array, int array[], int target);
 
 int main(void)
 {
@@ -30,4 +31,12 @@ int sevenPointFour(int size_of_array, int array[], int target)
         }
     }
     return -1; // else breaks the code
+}
+
+int randomName(int size_of_array, int array[], int target)
+{
+    for (int i = 0; i < size_of_array; i++)
+    {
+        return (array[i] == target) ? i : -1;
+    }
 }

@@ -30,7 +30,7 @@ void letterHist(char str[], int histogram[])
     {
         str[i] = tolower(str[i]);
     
-        if (!(str[i] >= 'a' && str[i] <= 'z'))
+        if (!((int)str[i] >= 97 && (int)str[i] <= 123))
         {
             break;
         }

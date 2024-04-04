@@ -19,10 +19,10 @@ int main(void)
     char x[] = "wefiwefiwewrbREGERHTN";
     char x2[] = "aa";
     int histogram[26] = {0};
-    int y = isDoubloon(x, histogram);
+    //int y = isDoubloon(x, histogram);
     int y2 = isDoubloon(x2, histogram);
-    printf("%d", y);
-    printf("%d", y2);
+    //printf("%d", y);
+    printf("%d\n", y2);
 }
 
 void letterHist(char* str, int* histogram)
@@ -31,11 +31,6 @@ void letterHist(char* str, int* histogram)
     for (int i = 0; i < cardinalityOfStr; i++)
     {
         str[i] = tolower(str[i]);
-    
-        if (!((int)str[i] >= 97 && (int)str[i] <= 123))
-        {
-            break;
-        }
         histogram[(int)str[i] - 97]++;
     }
 }
@@ -43,14 +38,22 @@ void letterHist(char* str, int* histogram)
 int isDoubloon(char* str, int* histogram)
 {
     letterHist(str, histogram);
+
+    /*
     for (int i = 0; i < 26; i++)
     {
-        if ((histogram[i] == 0) || histogram[i] == 2)
+        printf("%d\n", histogram[i]);
+    }
+    */
+
+    for (int i = 0; i < 26; i++)
+    {
+        
+        if ((histogram[i] != 0) && (histogram[i] != 2))
         {
-            puts("False");
+        
             return 0;
         }
     }
-    puts("True");
     return 1;
 }

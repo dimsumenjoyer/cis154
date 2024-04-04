@@ -11,7 +11,7 @@ C - Professor Penta
 #include <stdbool.h>
 #include <ctype.h>
 
-void letterHist(char str[], int histogram[]);
+void letterHist(char* str, int* histogram);
 
 int main(void)
 {
@@ -24,7 +24,7 @@ int main(void)
     } 
 }
 
-void letterHist(char str[], int histogram[])
+void letterHist(char* str, int* histogram)
 {
     for (int i = 0; i < strlen(str); i++)
     {

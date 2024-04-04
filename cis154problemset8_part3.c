@@ -11,43 +11,46 @@ C - Professor Penta
 #include <stdbool.h>
 #include <ctype.h>
 
-bool isDoubloon(char* str);
+int isDoubloon(char* str, int* histogram);
+void letterHist(char* str, int* histogram);
 
 int main(void)
 {
-    char str[] = "Anna";
-    bool x = isDoubloon(str);
-    if (x)
-    {
-        puts("True");
-    }
-    else
-    {
-        puts("False");
-    }
-
-    return 0;
+    char x[] = "wefiwefiwewrbREGERHTN";
+    char x2[] = "aa";
+    int histogram[26] = {0};
+    int y = isDoubloon(x, histogram);
+    int y2 = isDoubloon(x2, histogram);
+    printf("%d", y);
+    printf("%d", y2);
 }
 
-bool isDoubloon(char* str)
+void letterHist(char* str, int* histogram)
 {
-    int cardinalityOfString = strlen(str);
-    int comparisonArray[26] = {0};
-    for (int i = 0; i < cardinalityOfString; i++)
+    int cardinalityOfStr = strlen(str);
+    for (int i = 0; i < cardinalityOfStr; i++)
     {
-            char lowerCaseString = tolower(str[i]);
-            comparisonArray[(int)str[i] - 97]++;
-            int cardinalityOfComparisonArray = 26;
-            for (int i = 0; i < cardinalityOfString; i++)
-            {
-                if (!(comparisonArray[i] == 0) && !(comparisonArray[i] == 2))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
+        str[i] = tolower(str[i]);
+    
+        if (!((int)str[i] >= 97 && (int)str[i] <= 123))
+        {
+            break;
+        }
+        histogram[(int)str[i] - 97]++;
     }
+}
+
+int isDoubloon(char* str, int* histogram)
+{
+    letterHist(str, histogram);
+    for (int i = 0; i < 26; i++)
+    {
+        if ((histogram[i] == 0) || histogram[i] == 2)
+        {
+            puts("False");
+            return 0;
+        }
+    }
+    puts("True");
+    return 1;
 }

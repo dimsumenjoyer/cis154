@@ -11,33 +11,43 @@ C - Professor Penta
 #include <stdbool.h>
 #include <ctype.h>
 
-bool isDoubloon(char str[]);
+bool isDoubloon(char* str);
 
 int main(void)
 {
-    char str[4] = "Anna";
+    char str[] = "Anna";
     bool x = isDoubloon(str);
-    if (x == false)
+    if (x)
     {
-        puts("False");
+        puts("True");
     }
     else
     {
-        puts("True");
+        puts("False");
     }
 
     return 0;
 }
 
-bool isDoubloon(char str[])
+bool isDoubloon(char* str)
 {
-    int magntitudeOfString = strlen(str);
+    int cardinalityOfString = strlen(str);
     int comparisonArray[26] = {0};
-    for (int i = 0; i < magntitudeOfString; i++)
+    for (int i = 0; i < cardinalityOfString; i++)
     {
-        if ((int)str[i] > 64 && (int)str[i] < 90 || ((int)str[i] > 96 && (int)str[i] < 123))
-        {
             char lowerCaseString = tolower(str[i]);
-        }
+            comparisonArray[(int)str[i] - 97]++;
+            int cardinalityOfComparisonArray = 26;
+            for (int i = 0; i < cardinalityOfString; i++)
+            {
+                if (!(comparisonArray[i] == 0) && !(comparisonArray[i] == 2))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
     }
 }

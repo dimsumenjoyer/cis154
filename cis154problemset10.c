@@ -8,34 +8,36 @@ C - Professor Penta
 
 #include <stdio.h>
 
-printPerson(Person_t* personName);
-happyBirthday(int ageOfPerson);
+typedef struct
+{
+    char* personName;
+    int personAge;
+} Person_t;
+
+void printPerson(Person_t* personInfo);
+void happyBirthday(Person_t* personInfo);
 
 // Problem 9.1:
 
 // Problem 9.2:
 
-typedef struct
-{
-    int person1, person2;
-} Person_t;
-
 int main(void)
 {
-    char* person1Name = "Betsy";
-    char* person2Name = "Victor";
-    printPerson(person1Name);
-    printPerson(person2Name);
+    Person_t person1 = {"Betsy", 42};
+    Person_t person2 = {"Victor", 23};
+    printPerson(&person1);
+    printPerson(&person2);
+    happyBirthday(&person1);
+    happyBirthday(&person2);
 }
 
-printPerson(Person_t* personName)
+void printPerson(Person_t* personInfo)
 {
-    Person_t person;
-    person.person1 = 46;
-    person.person2 = 23;
+    printf("%s, %d\n", personInfo -> personName, personInfo -> personAge);
 }
 
-happyBirthday(int ageOfPerson)
+void happyBirthday(Person_t* personInfo)
 {
-
+    personInfo -> personAge++;
+    printf("Happy %d birthday, %s\n", personInfo -> personAge, personInfo -> personName);
 }

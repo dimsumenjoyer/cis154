@@ -1,9 +1,9 @@
 /*
 Victor Van
 00319912
-Problem Set 9.1
+Problem Set 9
 C - Professor Penta
-4/11/2024, Due: 4/13/2024
+4/11/2024, Due: 4/20/2024
 */
 
 #include <stdio.h>

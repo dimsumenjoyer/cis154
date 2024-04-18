@@ -21,6 +21,8 @@ int main(void)
     char* s3 = "nrymtyjthsrt";
     char* s4 = userInput(s1, s2, s3);
     puts(s4);
+    free(x);
+    free(s4);
     return 0;
 }
 

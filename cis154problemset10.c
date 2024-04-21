@@ -16,10 +16,26 @@ typedef struct
     int personAge;
 } Person_t;
 
+typedef struct
+{
+    int* array;
+    int cardinalityOfArray;
+} intArrayInfo;
+
+typedef struct
+{
+char initial1;
+char intial2;
+char intial3;
+int score;
+} HighScoreEntry;
+
+
 void printPerson(Person_t* personInfo);
 void happyBirthday(Person_t* personInfo);
-int* fillArray(int cardinality);
-void numberFile(int* array);
+intArrayInfo* fillArray(int cardinalityOfArray);
+void numberFile(intArrayInfo* arrayInfo);
+void sumOfNumbersFile(intArrayInfo* arrayInfo);
 
 int main(void)
 {
@@ -30,6 +46,12 @@ int main(void)
     printPerson(&person2);
     happyBirthday(&person1);
     happyBirthday(&person2);
+    intArrayInfo* arrayInfo = fillArray(50);
+    //numberFile(arrayInfo);
+    sumOfNumbersFile(arrayInfo);
+    free(arrayInfo->array);
+    free(arrayInfo);
+    return 0;
 }
 
 // Problem 9.1:
@@ -46,18 +68,41 @@ void happyBirthday(Person_t* personInfo)
 }
 
 // Problem 10.1
-int* fillArray(int cardinality)
+intArrayInfo* fillArray(int cardinalityOfArray)
 {
-    int* array = (int*)malloc(cardinality * sizeof(int));
-    for (int i = 0; i < cardinality; i++)
+    intArrayInfo* arrayPointer = (intArrayInfo*)malloc(sizeof(intArrayInfo));
+    arrayPointer -> array = (int*)malloc(cardinalityOfArray * sizeof(int));
+    for (int i = 0; i < cardinalityOfArray; i++) 
     {
-        int randomNumbers = rand() % (cardinality + 1);
-        array[i] = randomNumbers;
+        int randomNumbers = rand() % (cardinalityOfArray + 1);
+        arrayPointer -> array[i] = randomNumbers;
     }
-    return array;
+    arrayPointer -> cardinalityOfArray = cardinalityOfArray;
+    return arrayPointer;
 }
 
-void numberFile(int* array)
+void numberFile(intArrayInfo* arrayInfo) 
 {
-    FILE *file = fopen("numberFile.md", "w");
+    FILE *file = fopen("numberFile.md", "a+");
+    for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++)
+    {
+        fprintf(file, "%d\n", arrayInfo->array[i]);
+    }
+    fclose(file);
 }
+
+// Problem 10.2
+void sumOfNumbersFile(intArrayInfo* arrayInfo) //bugged. Usually doesn't print from the very start of file, and thereby gives the wrong sum.
+{
+    FILE *file = fopen("numberFile.md", "r");
+    int sum = 0;
+    for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++) 
+    {
+        printf("%d\n", arrayInfo -> array[i]);
+        sum += arrayInfo -> array[i];
+    }
+    printf("Sum: %d\n", sum);
+    fclose(file);
+}
+
+// Problem 10.3

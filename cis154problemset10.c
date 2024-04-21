@@ -99,7 +99,7 @@ void sumOfNumbersFile(intArrayInfo* arrayInfo) //bugged. Usually doesn't print f
     int numberInFile = 0;
     for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++) 
     {
-        if (fscanf(file, "%d", &numberInFile) == 1) 
+        if (fscanf(file, "%d", &numberInFile)) 
         {
             arrayInfo -> array[i] = numberInFile;
             printf("%d\n", arrayInfo -> array[i]);

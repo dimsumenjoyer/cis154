@@ -47,7 +47,7 @@ int main(void)
     happyBirthday(&person1);
     happyBirthday(&person2);
     intArrayInfo* arrayInfo = fillArray(50);
-    //numberFile(arrayInfo);
+    numberFile(arrayInfo);
     sumOfNumbersFile(arrayInfo);
     free(arrayInfo -> array);
     free(arrayInfo);
@@ -71,13 +71,13 @@ void happyBirthday(Person_t* personInfo)
 intArrayInfo* fillArray(int cardinalityOfArray)
 {
     intArrayInfo* arrayPointer = (intArrayInfo*)malloc(sizeof(intArrayInfo));
+    arrayPointer -> cardinalityOfArray = cardinalityOfArray;
     arrayPointer -> array = (int*)malloc(cardinalityOfArray * sizeof(int));
     for (int i = 0; i < cardinalityOfArray; i++) 
     {
         int randomNumbers = rand() % (cardinalityOfArray + 1);
         arrayPointer -> array[i] = randomNumbers;
     }
-    arrayPointer -> cardinalityOfArray = cardinalityOfArray;
     return arrayPointer;
 }
 

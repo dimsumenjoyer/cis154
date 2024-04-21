@@ -96,13 +96,17 @@ void sumOfNumbersFile(intArrayInfo* arrayInfo) //bugged. Usually doesn't print f
 {
     FILE *file = fopen("numberFile.md", "r");
     int sum = 0;
+    int numberInFile = 0;
     for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++) 
     {
-        printf("%d\n", arrayInfo -> array[i]);
-        sum += arrayInfo -> array[i];
+        if (fscanf(file, "%d", &numberInFile) == 1) 
+        {
+            arrayInfo -> array[i] = numberInFile;
+            printf("%d\n", arrayInfo -> array[i]);
+            sum += arrayInfo -> array[i];
+        }
     }
     printf("Sum: %d\n", sum);
     fclose(file);
 }
-
 // Problem 10.3

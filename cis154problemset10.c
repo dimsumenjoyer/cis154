@@ -49,7 +49,7 @@ int main(void)
     intArrayInfo* arrayInfo = fillArray(50);
     //numberFile(arrayInfo);
     sumOfNumbersFile(arrayInfo);
-    free(arrayInfo->array);
+    free(arrayInfo -> array);
     free(arrayInfo);
     return 0;
 }
@@ -86,7 +86,7 @@ void numberFile(intArrayInfo* arrayInfo)
     FILE *file = fopen("numberFile.md", "a+");
     for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++)
     {
-        fprintf(file, "%d\n", arrayInfo->array[i]);
+        fprintf(file, "%d\n", arrayInfo -> array[i]);
     }
     fclose(file);
 }

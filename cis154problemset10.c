@@ -24,10 +24,10 @@ typedef struct
 
 typedef struct
 {
-char initial1;
-char intial2;
-char intial3;
-int score;
+    char initial1;
+    char intial2;
+    char intial3;
+    int score;
 } HighScoreEntry;
 
 

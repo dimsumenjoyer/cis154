@@ -30,12 +30,12 @@ typedef struct
     int score;
 } HighScoreEntry;
 
-
 void printPerson(Person_t* personInfo);
 void happyBirthday(Person_t* personInfo);
 intArrayInfo* fillArray(int cardinalityOfArray);
 void numberFile(intArrayInfo* arrayInfo);
 void sumOfNumbersFile(intArrayInfo* arrayInfo);
+void scoreFunction(void);
 
 int main(void)
 {
@@ -47,8 +47,9 @@ int main(void)
     happyBirthday(&person1);
     happyBirthday(&person2);
     intArrayInfo* arrayInfo = fillArray(50);
-    numberFile(arrayInfo);
-    sumOfNumbersFile(arrayInfo);
+    //numberFile(arrayInfo);
+    //sumOfNumbersFile(arrayInfo);
+    scoreFunction();
     free(arrayInfo -> array);
     free(arrayInfo);
     return 0;
@@ -83,7 +84,7 @@ intArrayInfo* fillArray(int cardinalityOfArray)
 
 void numberFile(intArrayInfo* arrayInfo) 
 {
-    FILE *file = fopen("numberFile.md", "a+");
+    FILE *file = fopen("numberFile.md", "w"); // a+
     for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++)
     {
         fprintf(file, "%d\n", arrayInfo -> array[i]);
@@ -92,14 +93,14 @@ void numberFile(intArrayInfo* arrayInfo)
 }
 
 // Problem 10.2
-void sumOfNumbersFile(intArrayInfo* arrayInfo) //bugged. Usually doesn't print from the very start of file, and thereby gives the wrong sum.
+void sumOfNumbersFile(intArrayInfo* arrayInfo)
 {
     FILE *file = fopen("numberFile.md", "r");
     int sum = 0;
     int numberInFile = 0;
     for (int i = 0; i < arrayInfo -> cardinalityOfArray; i++) 
     {
-        if (fscanf(file, "%d", &numberInFile)) 
+        if (fscanf(file, "%d", &numberInFile) > 0) 
         {
             arrayInfo -> array[i] = numberInFile;
             printf("%d\n", arrayInfo -> array[i]);
@@ -110,3 +111,19 @@ void sumOfNumbersFile(intArrayInfo* arrayInfo) //bugged. Usually doesn't print f
     fclose(file);
 }
 // Problem 10.3
+
+void scoreFunction(void)
+{
+    int* scoreArray = malloc(10 * sizeof(int));
+    int userInput;
+    FILE *file = fopen("scoreFile.dat", "w");
+    for (int i = 0; i < 10; i++)
+    {
+        puts("\nEnter a integer: ");
+        scanf("%d", &userInput);
+        scoreArray[i] = userInput;
+        fprintf(file, "%d\n", scoreArray[i]);
+    }
+    fclose(file);
+    free(scoreArray);
+}

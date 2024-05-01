@@ -25,8 +25,8 @@ typedef struct
 typedef struct
 {
     char initial1;
-    char intial2;
-    char intial3;
+    char initial2;
+    char initial3;
     int score;
 } HighScoreEntry;
 
@@ -35,7 +35,10 @@ void happyBirthday(Person_t* personInfo);
 intArrayInfo* fillArray(int cardinalityOfArray);
 void numberFile(intArrayInfo* arrayInfo);
 void sumOfNumbersFile(intArrayInfo* arrayInfo);
-void scoreFunction(void);
+
+void scoreMenu(void);
+void displayScore(void);
+void inputScore(HighScoreEntry x);
 
 int main(void)
 {
@@ -49,9 +52,19 @@ int main(void)
     intArrayInfo* arrayInfo = fillArray(50);
     //numberFile(arrayInfo);
     //sumOfNumbersFile(arrayInfo);
-    scoreFunction();
+    //scoreFunction();
     free(arrayInfo -> array);
     free(arrayInfo);
+
+    HighScoreEntry x;
+    for (int i = 0; i < 10; i++)
+    {
+        x.initial1 = 'a';
+        x.initial2 = 'b';
+        x.initial3 = 'c';
+        x.score = 0;
+    }
+
     return 0;
 }
 
@@ -112,18 +125,7 @@ void sumOfNumbersFile(intArrayInfo* arrayInfo)
 }
 // Problem 10.3
 
-void scoreFunction(void)
+void inputScore(HighScoreEntry x)
 {
-    int* scoreArray = malloc(10 * sizeof(int));
-    int userInput;
-    FILE *file = fopen("scoreFile.dat", "w");
-    for (int i = 0; i < 10; i++)
-    {
-        puts("\nEnter a integer: ");
-        scanf("%d", &userInput);
-        scoreArray[i] = userInput;
-        fprintf(file, "%d\n", scoreArray[i]);
-    }
-    fclose(file);
-    free(scoreArray);
+
 }

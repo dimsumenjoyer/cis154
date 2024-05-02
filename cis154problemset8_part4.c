@@ -22,6 +22,7 @@ int main(void)
 
 char* encoderCaptainCrunch(char* str)
 {
+    \*
     int cardinalityOfStr = strlen(str);
     for (int i = 0; i < cardinalityOfStr; i++)
     {
@@ -39,6 +40,7 @@ char* encoderCaptainCrunch(char* str)
         }
         printf("%c\n", str[i]);
     }
+    *\
     decoderCaptainCrunch(str);
 }
 
